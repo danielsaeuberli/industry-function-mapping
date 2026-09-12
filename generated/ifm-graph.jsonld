@@ -1,0 +1,2232 @@
+{
+  "@context": {
+    "ifm": "https://danielsaeuberli.github.io/industry-function-mapping/ontology#",
+    "scheme": "https://danielsaeuberli.github.io/industry-function-mapping/id/scheme/",
+    "sector": "https://danielsaeuberli.github.io/industry-function-mapping/id/sector/",
+    "func": "https://danielsaeuberli.github.io/industry-function-mapping/id/function/",
+    "cbf": "https://danielsaeuberli.github.io/industry-function-mapping/id/cbf/",
+    "apqc": "https://danielsaeuberli.github.io/industry-function-mapping/id/apqc/",
+    "uc": "https://danielsaeuberli.github.io/industry-function-mapping/id/use-case/",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "schema": "https://schema.org/",
+    "dct": "http://purl.org/dc/terms/",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "@vocab": "https://danielsaeuberli.github.io/industry-function-mapping/ontology#"
+  },
+  "@graph": [
+    {
+      "@id": "https://danielsaeuberli.github.io/industry-function-mapping/",
+      "@type": [
+        "owl:Ontology"
+      ],
+      "owl:imports": {
+        "@id": "https://danielsaeuberli.github.io/industry-function-mapping/ontology"
+      },
+      "dct:title": {
+        "@value": "Industry-Function Mapping graph",
+        "@language": "en"
+      },
+      "dct:creator": {
+        "@value": "Daniel Saeuberli"
+      },
+      "dct:license": {
+        "@id": "https://creativecommons.org/licenses/by/4.0/"
+      }
+    },
+    {
+      "@id": "scheme:isic-rev4",
+      "@type": [
+        "skos:ConceptScheme"
+      ],
+      "dct:title": {
+        "@value": "ISIC Rev. 4 (sectors used by this repository)",
+        "@language": "en"
+      },
+      "dct:description": {
+        "@value": "Local SKOS rendering of the International Standard Industrial Classification of All Economic Activities, Revision 4. All 21 sections, plus the divisions and classes the mapped use cases actually reach.",
+        "@language": "en"
+      },
+      "dct:source": {
+        "@id": "https://unstats.un.org/unsd/classifications/Econ/isic"
+      }
+    },
+    {
+      "@id": "scheme:cbf",
+      "@type": [
+        "skos:ConceptScheme"
+      ],
+      "dct:title": {
+        "@value": "Classification of Business Functions (categories)",
+        "@language": "en"
+      },
+      "dct:description": {
+        "@value": "Business function categories following the UNECE/Eurostat Classification of Business Functions. Labels are seeded here and carry codeStatus 'provisional' until checked against the official publication; no notations are invented.",
+        "@language": "en"
+      },
+      "dct:source": {
+        "@id": "https://unece.org/trade/statistics"
+      }
+    },
+    {
+      "@id": "scheme:apqc-pcf",
+      "@type": [
+        "skos:ConceptScheme"
+      ],
+      "dct:title": {
+        "@value": "APQC Process Classification Framework (referenced categories)",
+        "@language": "en"
+      },
+      "dct:description": {
+        "@value": "Only the cross-industry PCF categories an alignment actually references. The framework itself is published by APQC and is not redistributed here.",
+        "@language": "en"
+      },
+      "dct:source": {
+        "@id": "https://www.apqc.org/process-frameworks"
+      }
+    },
+    {
+      "@id": "scheme:ifm-functions",
+      "@type": [
+        "skos:ConceptScheme"
+      ],
+      "dct:title": {
+        "@value": "IFM operational business functions",
+        "@language": "en"
+      },
+      "dct:description": {
+        "@value": "The function vocabulary this repository actually maps use cases onto. Deliberately its own scheme rather than a fork of CBF or APQC PCF: the alignment to those is recorded as SKOS mapping relations, so the external classifications can be swapped or corrected without touching any use case.",
+        "@language": "en"
+      },
+      "dct:source": {
+        "@id": "https://danielsaeuberli.github.io/industry-function-mapping/"
+      }
+    },
+    {
+      "@id": "sector:ISIC-A",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Agriculture, forestry and fishing",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "A"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "A"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-B",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Mining and quarrying",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "B"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "B"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-C",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Manufacturing",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "C"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-C-30"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "C"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-D",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Electricity, gas, steam and air conditioning supply",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "D"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "D"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-E",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Water supply; sewerage, waste management and remediation activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "E"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "E"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-F",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Construction",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "F"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "F"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-G",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Wholesale and retail trade; repair of motor vehicles and motorcycles",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "G"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-G-47"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "G"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-H",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Transportation and storage",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "H"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "H"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-I",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Accommodation and food service activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "I"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-I-56"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "I"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-J",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Information and communication",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "J"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-J-62"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "J"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-K",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Financial and insurance activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "K"
+      },
+      "skos:narrower": [
+        {
+          "@id": "sector:ISIC-K-64"
+        },
+        {
+          "@id": "sector:ISIC-K-65"
+        }
+      ],
+      "ifm:naceRev2Code": {
+        "@value": "K"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-L",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Real estate activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "L"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "L"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-M",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Professional, scientific and technical activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "M"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "M"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-N",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Administrative and support service activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "N"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "N"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-O",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Public administration and defence; compulsory social security",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "O"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-O-84"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "O"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-P",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Education",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "P"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-P-85"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "P"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-Q",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Human health and social work activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "Q"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-Q-86"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "Q"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-R",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Arts, entertainment and recreation",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "R"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "R"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-S",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Other service activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "S"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "S"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-T",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "T"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "T"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-U",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Activities of extraterritorial organizations and bodies",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "U"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "U"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-C-30",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Manufacture of other transport equipment",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "30"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-C"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-C-3030"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "30"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-C-3030",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Manufacture of air and spacecraft and related machinery",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "3030"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-C-30"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      },
+      "skos:scopeNote": {
+        "@value": "NACE code not asserted: ISIC and NACE diverge below division level.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "sector:ISIC-G-47",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Retail trade, except of motor vehicles and motorcycles",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "47"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-G"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-G-4711"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "47"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-G-4711",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Retail sale in non-specialised stores with food, beverages or tobacco predominating",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "4711"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-G-47"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-I-56",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Food and beverage service activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "56"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-I"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-I-5610"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "56"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-I-5610",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Restaurants and mobile food service activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "5610"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-I-56"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-J-62",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Computer programming, consultancy and related activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "62"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-J"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "62"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-K-64",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Financial service activities, except insurance and pension funding",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "64"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-K"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-K-6419"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "64"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-K-6419",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Other monetary intermediation",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "6419"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-K-64"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      },
+      "skos:scopeNote": {
+        "@value": "Covers deposit-taking retail and commercial banking.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "sector:ISIC-K-65",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Insurance, reinsurance and pension funding, except compulsory social security",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "65"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-K"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-K-6512"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "65"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-K-6512",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Non-life insurance",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "6512"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-K-65"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-O-84",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Public administration and defence; compulsory social security",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "84"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-O"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-O-8411"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "84"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-O-8411",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "General public administration activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "8411"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-O-84"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-P-85",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Education",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "85"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-P"
+      },
+      "skos:narrower": [
+        {
+          "@id": "sector:ISIC-P-8521"
+        },
+        {
+          "@id": "sector:ISIC-P-8530"
+        }
+      ],
+      "ifm:naceRev2Code": {
+        "@value": "85"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-P-8521",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "General secondary education",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "8521"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-P-85"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      },
+      "skos:scopeNote": {
+        "@value": "Swiss gymnasiale Maturität sits here.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "sector:ISIC-P-8530",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Higher education",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "8530"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-P-85"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-Q-86",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Human health activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "86"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-Q"
+      },
+      "skos:narrower": {
+        "@id": "sector:ISIC-Q-8610"
+      },
+      "ifm:naceRev2Code": {
+        "@value": "86"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "sector:ISIC-Q-8610",
+      "@type": [
+        "ifm:Sector",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:isic-rev4"
+      },
+      "skos:prefLabel": {
+        "@value": "Hospital activities",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "8610"
+      },
+      "skos:broader": {
+        "@id": "sector:ISIC-Q-86"
+      },
+      "ifm:codeStatus": {
+        "@value": "verified"
+      }
+    },
+    {
+      "@id": "cbf:CBF-CORE",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Core business function",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "The production of the goods or services intended for the market that constitute the enterprise's primary output. Core vs. support is relative to the enterprise, not to the activity.",
+        "@language": "en"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Support business functions",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Ancillary activities carried out to permit or facilitate the core function.",
+        "@language": "en"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP-DIST",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Distribution and logistics",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "cbf:CBF-SUP"
+      },
+      "skos:definition": {
+        "@value": "Transport, warehousing, order handling.",
+        "@language": "en"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP-MKT",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Marketing, sales and after-sales services",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "cbf:CBF-SUP"
+      },
+      "skos:definition": {
+        "@value": "Including help desks and call centres.",
+        "@language": "en"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP-ICT",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "ICT services",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "cbf:CBF-SUP"
+      },
+      "skos:definition": {
+        "@value": "Operating and maintaining information and communication systems.",
+        "@language": "en"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP-ADM",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Administrative and management functions",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "cbf:CBF-SUP"
+      },
+      "skos:definition": {
+        "@value": "Legal, accounting, finance, human resources, general management, compliance.",
+        "@language": "en"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP-ENG",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Engineering and related technical services",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "cbf:CBF-SUP"
+      },
+      "skos:definition": {
+        "@value": "Technical testing, design, engineering support.",
+        "@language": "en"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP-RND",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Research and development",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "cbf:CBF-SUP"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "cbf:CBF-SUP-OTH",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:cbf"
+      },
+      "skos:prefLabel": {
+        "@value": "Other support business functions",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "cbf:CBF-SUP"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "apqc:apqc-3.0",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:prefLabel": {
+        "@value": "Market and Sell Products and Services",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "3.0"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      },
+      "skos:scopeNote": {
+        "@value": "Cross-industry PCF category. Only the categories referenced by an alignment are carried here; the full framework is licensed by APQC and must be obtained from apqc.org.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "apqc:apqc-6.0",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:prefLabel": {
+        "@value": "Manage Customer Service",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "6.0"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "apqc:apqc-7.0",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:prefLabel": {
+        "@value": "Develop and Manage Human Capital",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "7.0"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "apqc:apqc-8.0",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:prefLabel": {
+        "@value": "Manage Information Technology",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "8.0"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "apqc:apqc-11.0",
+      "@type": [
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:apqc-pcf"
+      },
+      "skos:prefLabel": {
+        "@value": "Manage Enterprise Risk, Compliance, Remediation, and Resiliency",
+        "@language": "en"
+      },
+      "skos:notation": {
+        "@value": "11.0"
+      },
+      "ifm:codeStatus": {
+        "@value": "provisional"
+      }
+    },
+    {
+      "@id": "func:identity-proofing",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Identity proofing",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Establishing to a stated level of assurance that a claimed identity corresponds to a real subject.",
+        "@language": "en"
+      },
+      "skos:narrower": {
+        "@id": "func:identity-lifecycle-management"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-ADM"
+      },
+      "skos:relatedMatch": {
+        "@id": "apqc:apqc-11.0"
+      },
+      "skos:editorialNote": {
+        "@value": "Administrative where it is a gate on a relationship; becomes core for identity service providers.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "func:customer-onboarding",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Customer onboarding",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Establishing a new customer or member relationship, including the due diligence that regulation attaches to it.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-MKT"
+      },
+      "skos:relatedMatch": {
+        "@id": "apqc:apqc-3.0"
+      }
+    },
+    {
+      "@id": "func:identity-lifecycle-management",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Identity lifecycle management",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Maintaining an established identity relationship over time: re-verification, recovery, attribute updates, revocation.",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "func:identity-proofing"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-ADM"
+      }
+    },
+    {
+      "@id": "func:eligibility-verification",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Eligibility verification",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Checking whether a subject meets a stated condition — age, residency, licence, membership — without necessarily identifying them.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-ADM"
+      }
+    },
+    {
+      "@id": "func:access-management",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Access management",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Granting, restricting and revoking access to systems, premises or services.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-ICT"
+      },
+      "skos:relatedMatch": {
+        "@id": "apqc:apqc-8.0"
+      }
+    },
+    {
+      "@id": "func:certification-and-attestation",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Certification and attestation",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Issuing an authoritative statement about a subject, a product or a process — a diploma, a certificate, an accreditation.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-CORE"
+      },
+      "skos:editorialNote": {
+        "@value": "Core for schools, laboratories and certification bodies; support elsewhere. See README on the core/support relativity.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "func:regulatory-compliance",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Regulatory compliance",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Meeting statutory and regulatory obligations, including record-keeping and supervisory reporting.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-ADM"
+      },
+      "skos:relatedMatch": {
+        "@id": "apqc:apqc-11.0"
+      }
+    },
+    {
+      "@id": "func:sourcing-and-procurement",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Sourcing and procurement",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Selecting, qualifying and contracting suppliers, and running the purchase-to-pay process.",
+        "@language": "en"
+      },
+      "skos:narrower": {
+        "@id": "func:supply-chain-traceability"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-DIST"
+      },
+      "skos:editorialNote": {
+        "@value": "CBF has no separate procurement category; distribution and logistics is the closest fit.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "func:supply-chain-traceability",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Supply chain traceability",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Establishing provenance and chain of custody for goods and their inputs.",
+        "@language": "en"
+      },
+      "skos:broader": {
+        "@id": "func:sourcing-and-procurement"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-DIST"
+      }
+    },
+    {
+      "@id": "func:human-capital-management",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Human capital management",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Hiring, employing and offboarding people, and administering their qualifications and entitlements.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-ADM"
+      },
+      "skos:relatedMatch": {
+        "@id": "apqc:apqc-7.0"
+      }
+    },
+    {
+      "@id": "func:customer-service",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Customer service",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Handling requests, incidents and complaints from an existing customer relationship.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-MKT"
+      },
+      "skos:relatedMatch": {
+        "@id": "apqc:apqc-6.0"
+      }
+    },
+    {
+      "@id": "func:service-delivery",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Service delivery",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Performing and delivering the service the organisation exists to provide.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-CORE"
+      }
+    },
+    {
+      "@id": "func:records-management",
+      "@type": [
+        "ifm:BusinessFunction",
+        "skos:Concept"
+      ],
+      "skos:inScheme": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:topConceptOf": {
+        "@id": "scheme:ifm-functions"
+      },
+      "skos:prefLabel": {
+        "@value": "Records management",
+        "@language": "en"
+      },
+      "skos:definition": {
+        "@value": "Maintaining an authoritative register or record and answering queries against it.",
+        "@language": "en"
+      },
+      "skos:broadMatch": {
+        "@id": "cbf:CBF-SUP-ADM"
+      }
+    },
+    {
+      "@id": "uc:banking-kyc-onboarding",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Online onboarding and KYC credential issuance",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "A prospective customer opens a bank account remotely. The bank identifies them against the e-ID and issues a reusable KYC attestation.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": [
+        {
+          "@id": "sector:ISIC-K-6419"
+        },
+        {
+          "@id": "sector:ISIC-K-6512"
+        }
+      ],
+      "ifm:primaryFunction": {
+        "@id": "func:customer-onboarding"
+      },
+      "ifm:executesFunction": [
+        {
+          "@id": "func:identity-proofing"
+        },
+        {
+          "@id": "func:regulatory-compliance"
+        }
+      ],
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Modelled"
+      },
+      "ifm:documentedBy": {
+        "@id": "https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/KYC%20Credential"
+      }
+    },
+    {
+      "@id": "uc:banking-re-kyc",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Periodic KYC re-evaluation",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "The bank re-runs customer due diligence on an existing relationship at the interval its supervisor requires, reusing the identity already established.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-K-6419"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:regulatory-compliance"
+      },
+      "ifm:executesFunction": {
+        "@id": "func:identity-lifecycle-management"
+      },
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Modelled"
+      },
+      "ifm:documentedBy": {
+        "@id": "https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/KYC%20Credential"
+      }
+    },
+    {
+      "@id": "uc:banking-reidentification-password-reset",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Re-identification after a forgotten password",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "An existing e-banking customer who has lost their credentials is re-identified before access is restored, without a branch visit.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-K-6419"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:identity-lifecycle-management"
+      },
+      "ifm:executesFunction": [
+        {
+          "@id": "func:customer-service"
+        },
+        {
+          "@id": "func:access-management"
+        }
+      ],
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Modelled"
+      },
+      "ifm:documentedBy": {
+        "@id": "https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/Re-Identification%20After%20Forgotten%20Password"
+      }
+    },
+    {
+      "@id": "uc:banking-age-of-majority-reidentification",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Re-identification at the age of majority",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "A customer onboarded as a minor turns 18. The relationship is re-established at full legal capacity, with a qualified electronic signature.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-K-6419"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:identity-lifecycle-management"
+      },
+      "ifm:executesFunction": {
+        "@id": "func:regulatory-compliance"
+      },
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Modelled"
+      },
+      "ifm:documentedBy": {
+        "@id": "https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/Re-Identification%20at%20Age%20of%20Majority"
+      }
+    },
+    {
+      "@id": "uc:education-maturitaetszeugnis-issuance",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Issuance of a Maturitätszeugnis",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "An upper-secondary school issues the school-leaving certificate to the graduate as a digital attestation.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-P-8521"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:certification-and-attestation"
+      },
+      "ifm:executesFunction": {
+        "@id": "func:records-management"
+      },
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Modelled"
+      },
+      "ifm:documentedBy": {
+        "@id": "https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/education"
+      }
+    },
+    {
+      "@id": "uc:education-university-immatriculation",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "University immatriculation",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "A university admits a student on the strength of the e-ID and the Maturitätszeugnis, without re-collecting or re-checking paper documents.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-P-8530"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:customer-onboarding"
+      },
+      "ifm:executesFunction": [
+        {
+          "@id": "func:eligibility-verification"
+        },
+        {
+          "@id": "func:identity-proofing"
+        }
+      ],
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Modelled"
+      },
+      "ifm:documentedBy": {
+        "@id": "https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/education"
+      }
+    },
+    {
+      "@id": "uc:retail-hospitality-age-verification",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Age verification at the point of sale",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "A merchant or a restaurant checks that a customer is over the legal age for a restricted product, learning nothing else about them.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": [
+        {
+          "@id": "sector:ISIC-G-4711"
+        },
+        {
+          "@id": "sector:ISIC-I-5610"
+        }
+      ],
+      "ifm:primaryFunction": {
+        "@id": "func:eligibility-verification"
+      },
+      "ifm:executesFunction": {
+        "@id": "func:regulatory-compliance"
+      },
+      "ifm:sectorScope": {
+        "@id": "ifm:CrossSector"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Exploratory"
+      }
+    },
+    {
+      "@id": "uc:employment-identity-proofing",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Employee identity proofing and onboarding",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "An employer identifies a new hire and checks the qualifications the role requires, before provisioning any account.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": [
+        {
+          "@id": "sector:ISIC-C"
+        },
+        {
+          "@id": "sector:ISIC-J"
+        },
+        {
+          "@id": "sector:ISIC-K"
+        },
+        {
+          "@id": "sector:ISIC-P"
+        },
+        {
+          "@id": "sector:ISIC-Q"
+        }
+      ],
+      "ifm:primaryFunction": {
+        "@id": "func:human-capital-management"
+      },
+      "ifm:executesFunction": [
+        {
+          "@id": "func:identity-proofing"
+        },
+        {
+          "@id": "func:eligibility-verification"
+        }
+      ],
+      "ifm:sectorScope": {
+        "@id": "ifm:CrossSector"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Exploratory"
+      }
+    },
+    {
+      "@id": "uc:aerospace-supplier-onboarding",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Automated aerospace supplier onboarding",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "A manufacturer qualifies a new supplier by checking its legal existence, its signatories and its quality accreditations.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-C-3030"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:sourcing-and-procurement"
+      },
+      "ifm:executesFunction": [
+        {
+          "@id": "func:supply-chain-traceability"
+        },
+        {
+          "@id": "func:regulatory-compliance"
+        }
+      ],
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Exploratory"
+      }
+    },
+    {
+      "@id": "uc:healthcare-patient-identification",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Patient identification at admission",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "A hospital identifies a patient at admission and links them to the right record.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-Q-8610"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:service-delivery"
+      },
+      "ifm:executesFunction": [
+        {
+          "@id": "func:identity-proofing"
+        },
+        {
+          "@id": "func:records-management"
+        }
+      ],
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Exploratory"
+      }
+    },
+    {
+      "@id": "uc:egov-service-access",
+      "@type": [
+        "ifm:UseCase",
+        "schema:Action"
+      ],
+      "schema:name": {
+        "@value": "Access to an online government service",
+        "@language": "en"
+      },
+      "schema:description": {
+        "@value": "A resident authenticates to a public-administration service portal and proves the attributes the service is entitled to see.",
+        "@language": "en"
+      },
+      "ifm:appliesToSector": {
+        "@id": "sector:ISIC-O-8411"
+      },
+      "ifm:primaryFunction": {
+        "@id": "func:access-management"
+      },
+      "ifm:executesFunction": [
+        {
+          "@id": "func:identity-proofing"
+        },
+        {
+          "@id": "func:service-delivery"
+        }
+      ],
+      "ifm:sectorScope": {
+        "@id": "ifm:SectorSpecific"
+      },
+      "ifm:maturity": {
+        "@id": "ifm:Exploratory"
+      }
+    }
+  ]
+}

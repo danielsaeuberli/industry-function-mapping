@@ -1,0 +1,20 @@
+function_id,target_scheme,target_id,match_type,status,note
+identity-proofing,cbf,CBF-SUP-ADM,broadMatch,provisional,Administrative where it is a gate on a relationship; becomes core for identity service providers.
+identity-proofing,apqc-pcf,apqc-11.0,relatedMatch,provisional,
+customer-onboarding,cbf,CBF-SUP-MKT,broadMatch,provisional,
+customer-onboarding,apqc-pcf,apqc-3.0,relatedMatch,provisional,
+identity-lifecycle-management,cbf,CBF-SUP-ADM,broadMatch,provisional,
+eligibility-verification,cbf,CBF-SUP-ADM,broadMatch,provisional,
+access-management,cbf,CBF-SUP-ICT,broadMatch,provisional,
+access-management,apqc-pcf,apqc-8.0,relatedMatch,provisional,
+certification-and-attestation,cbf,CBF-CORE,broadMatch,provisional,"Core for schools, laboratories and certification bodies; support elsewhere. See README on the core/support relativity."
+regulatory-compliance,cbf,CBF-SUP-ADM,broadMatch,provisional,
+regulatory-compliance,apqc-pcf,apqc-11.0,relatedMatch,provisional,
+sourcing-and-procurement,cbf,CBF-SUP-DIST,broadMatch,provisional,CBF has no separate procurement category; distribution and logistics is the closest fit.
+supply-chain-traceability,cbf,CBF-SUP-DIST,broadMatch,provisional,
+human-capital-management,cbf,CBF-SUP-ADM,broadMatch,provisional,
+human-capital-management,apqc-pcf,apqc-7.0,relatedMatch,provisional,
+customer-service,cbf,CBF-SUP-MKT,broadMatch,provisional,
+customer-service,apqc-pcf,apqc-6.0,relatedMatch,provisional,
+service-delivery,cbf,CBF-CORE,broadMatch,provisional,
+records-management,cbf,CBF-SUP-ADM,broadMatch,provisional,

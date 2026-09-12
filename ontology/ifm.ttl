@@ -1,0 +1,145 @@
+# Industry–Function Mapping (IFM) — core ontology
+#
+# Layers 1–3 of the semantic blueprint:
+#   1. Sector   — where an activity happens   (SKOS rendering of ISIC Rev. 4)
+#   2. Function — what is being done          (SKOS scheme, aligned to UN CBF / APQC PCF)
+#   3. Use case — the bridge between the two  (schema:Action)
+#
+# Layer 4 (verifiable credentials) is deliberately NOT modelled yet. The
+# extension point is documented in ../README.md § "Layer 4 — deferred"; nothing
+# in this file needs to change to add it.
+#
+# SPDX-License-Identifier: CC-BY-4.0
+
+@prefix ifm:    <https://danielsaeuberli.github.io/industry-function-mapping/ontology#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix schema: <https://schema.org/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+
+<https://danielsaeuberli.github.io/industry-function-mapping/ontology>
+    a owl:Ontology ;
+    dct:title "Industry–Function Mapping ontology"@en ;
+    dct:description """Minimal vocabulary for mapping use cases onto an industry
+sector taxonomy and a business function taxonomy, so that the same function can
+be recognised across sectors and the same sector can be compared across
+functions."""@en ;
+    dct:creator "Daniel Saeuberli" ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "0.1.0" .
+
+################################################################
+# Layer 1 — Sector
+################################################################
+
+ifm:Sector a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Sector"@en ;
+    rdfs:comment """An economic activity class. Sectors are not invented here:
+they are a local SKOS rendering of ISIC Rev. 4 (sections, divisions, classes).
+skos:notation carries the official ISIC code."""@en .
+
+ifm:naceRev2Code a owl:DatatypeProperty ;
+    rdfs:label "NACE Rev. 2 code"@en ;
+    rdfs:domain ifm:Sector ;
+    rdfs:range xsd:string ;
+    rdfs:comment """NACE Rev. 2 is derived from ISIC Rev. 4 and identical to it
+at section and division level, so the code is recorded as a literal at those two
+levels only. It is NOT asserted at class level, where the two classifications
+diverge."""@en .
+
+################################################################
+# Layer 2 — Function
+################################################################
+
+ifm:BusinessFunction a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "Business function"@en ;
+    rdfs:comment """A unit of work an organisation performs, defined
+independently of the sector performing it. "Identity proofing" is the same
+function in banking and in healthcare; only its regulatory context differs."""@en .
+
+################################################################
+# Layer 3 — Use case (the bridge)
+################################################################
+
+ifm:UseCase a owl:Class ;
+    rdfs:subClassOf schema:Action ;
+    rdfs:label "Use case"@en ;
+    rdfs:comment """An intersection node: a concrete piece of work that a given
+function performs inside a given sector. Use cases are where sector-specific
+regulation meets a sector-neutral function."""@en .
+
+ifm:appliesToSector a owl:ObjectProperty ;
+    rdfs:label "applies to sector"@en ;
+    rdfs:domain ifm:UseCase ;
+    rdfs:range ifm:Sector ;
+    rdfs:comment """Link to the most specific ISIC concept that is actually
+warranted. A use case that genuinely spans an entire section links to the
+section, not to an arbitrary class inside it."""@en .
+
+ifm:executesFunction a owl:ObjectProperty ;
+    rdfs:label "executes function"@en ;
+    rdfs:domain ifm:UseCase ;
+    rdfs:range ifm:BusinessFunction .
+
+ifm:primaryFunction a owl:ObjectProperty ;
+    rdfs:subPropertyOf ifm:executesFunction ;
+    rdfs:label "primary function"@en ;
+    rdfs:comment "The one function the use case exists to perform. Exactly one per use case."@en .
+
+ifm:sectorHasUseCase a owl:ObjectProperty ;
+    rdfs:label "sector has use case"@en ;
+    owl:inverseOf ifm:appliesToSector .
+
+ifm:functionHasUseCase a owl:ObjectProperty ;
+    rdfs:label "function has use case"@en ;
+    owl:inverseOf ifm:executesFunction .
+
+################################################################
+# Use case attributes
+################################################################
+
+ifm:Scope a owl:Class ; rdfs:label "Sector scope"@en .
+ifm:CrossSector    a ifm:Scope ; rdfs:label "Cross-sector"@en ;
+    rdfs:comment "Reaches more than one ISIC section. Derived, not hand-maintained."@en .
+ifm:SectorSpecific a ifm:Scope ; rdfs:label "Sector-specific"@en ;
+    rdfs:comment "Confined to a single ISIC section. Derived, not hand-maintained."@en .
+
+ifm:sectorScope a owl:ObjectProperty ;
+    rdfs:label "sector scope"@en ;
+    rdfs:domain ifm:UseCase ;
+    rdfs:range ifm:Scope .
+
+ifm:Maturity a owl:Class ; rdfs:label "Maturity"@en .
+ifm:Exploratory a ifm:Maturity ; rdfs:label "Exploratory"@en ;
+    rdfs:comment "Identified and scoped; no worked flow in this repository yet."@en .
+ifm:Modelled    a ifm:Maturity ; rdfs:label "Modelled"@en ;
+    rdfs:comment "A worked trust flow exists in this repository."@en .
+ifm:Live        a ifm:Maturity ; rdfs:label "Live"@en ;
+    rdfs:comment "Running in production somewhere in the Swiss trust ecosystem."@en .
+
+ifm:maturity a owl:ObjectProperty ;
+    rdfs:label "maturity"@en ;
+    rdfs:domain ifm:UseCase ;
+    rdfs:range ifm:Maturity .
+
+ifm:documentedBy a owl:ObjectProperty ;
+    rdfs:label "documented by"@en ;
+    rdfs:domain ifm:UseCase ;
+    rdfs:comment "The trust flow diagram or README in this repository that works the use case out."@en .
+
+################################################################
+# Provenance of the taxonomy data itself
+################################################################
+
+ifm:codeStatus a owl:DatatypeProperty ;
+    rdfs:label "code status"@en ;
+    rdfs:range xsd:string ;
+    rdfs:comment """How far the notation/label of a concept has been checked
+against the official publication of the source classification. One of
+"verified" (checked against the published classification) or "provisional"
+(seeded here, to be replaced by an official extract). Never silently
+upgrade a value: see ../README.md § "Provenance and honesty"."""@en .
