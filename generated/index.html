@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Industry &amp; function mapping</title>
+<meta name="description" content="Which use cases sit at which intersection of economic sector (ISIC Rev. 4) and business function.">
+<style>
+  /* Self-contained on purpose: this page is published straight out of
+     generated/ with no other assets to deploy alongside it. */
+  :root {
+    --accent: #c61623; --ink: #212934; --body: #4a5261;
+    --line: #e4e8ec; --bg-soft: #f8f9fb;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); line-height: 1.6;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  code { font-size: 0.92em; background: var(--bg-soft); padding: 1px 4px;
+    border-radius: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  header.site { border-bottom: 1px solid var(--line); }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between;
+    padding-top: 22px; padding-bottom: 22px; flex-wrap: wrap; gap: 12px; }
+  .brand { font-weight: 600; }
+  .divider { display: inline-block; width: 1px; height: 14px; margin: 0 10px -2px;
+    background: var(--line); }
+  section { padding: 36px 0; border-top: 1px solid var(--line); }
+  section.hero { border-top: none; padding-bottom: 8px; }
+  h1 { font-size: 34px; line-height: 1.2; margin: 8px 0 16px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--body); margin: 0 0 18px; }
+  h3 { font-size: 16px; margin: 0 0 8px; }
+  .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--accent); font-weight: 600; }
+  .lede { font-size: 16px; color: var(--body); max-width: 680px; }
+  .prose { color: var(--body); font-size: 14.5px; max-width: 680px; }
+  .matrix-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; }
+  table.matrix { border-collapse: collapse; font-size: 13px; min-width: 100%; }
+  table.matrix th, table.matrix td { border-bottom: 1px solid var(--line); padding: 8px 10px; }
+  table.matrix th.fn { vertical-align: bottom; text-align: left; font-weight: 600;
+    white-space: nowrap; font-size: 12px; color: var(--body); }
+  table.matrix th.fn span { display: block; writing-mode: vertical-rl;
+    transform: rotate(180deg); height: 185px; }
+  table.matrix th.sector { text-align: left; font-weight: 500; max-width: 260px;
+    position: sticky; left: 0; background: #fff; border-right: 1px solid var(--line);
+    line-height: 1.35; }
+  table.matrix td { text-align: center; vertical-align: middle; }
+  table.matrix td.empty { background: var(--bg-soft); }
+  .code { display: inline-block; min-width: 20px; padding: 0 5px; margin-right: 4px;
+    border: 1px solid var(--line); border-radius: 3px; font-size: 11px;
+    color: var(--body); background: var(--bg-soft); }
+  .dot { text-decoration: none; font-size: 13px; padding: 0 1px; }
+  .dot.primary { color: var(--accent); }
+  .dot.support { color: #9aa3b0; }
+  .legend { font-size: 13px; color: var(--body); margin-top: 12px; }
+  .meta { font-size: 13px; color: var(--body); margin: 4px 0; }
+  .flows { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .flow { border: 1px solid var(--line); border-radius: 6px; display: flex;
+    flex-direction: column; scroll-margin-top: 20px; }
+  .flow-tag { font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--body); padding: 10px 16px; border-bottom: 1px solid var(--line);
+    background: var(--bg-soft); }
+  .flow-body { padding: 16px; flex: 1; }
+  .flow-body p { font-size: 14px; color: var(--body); margin-top: 0; }
+  .flow-link { padding: 12px 16px; border-top: 1px solid var(--line); font-size: 14px; }
+  .status { font-size: 12px; color: var(--body); }
+  footer.site { border-top: 1px solid var(--line); margin-top: 40px; }
+  footer.site .wrap { display: flex; flex-wrap: wrap; gap: 10px 24px;
+    justify-content: space-between; padding-top: 20px; padding-bottom: 40px;
+    font-size: 12.5px; color: var(--body); }
+  @media (max-width: 620px) {
+    h1 { font-size: 27px; }
+    table.matrix th.sector { max-width: 160px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">Industry &amp; function mapping <span class="divider"></span>
+      <span style="font-weight:400;color:var(--body)">knowledge graph</span></div>
+    <nav><a href="https://github.com/danielsaeuberli/industry-function-mapping">GitHub &#8599;</a></nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <span class="eyebrow">Knowledge graph</span>
+    <h1>Which function, in which sector</h1>
+    <p class="lede">
+      Every use case in this graph sits at an intersection: an economic sector
+      (ISIC Rev. 4) and a business function that is defined independently of it.
+      Read the matrix down a column to find the same function recurring across
+      sectors &mdash; those are the places where one pattern can serve many industries.
+    </p>
+  </section>
+
+  <section>
+    <h2>Sector &times; function</h2>
+    <div class="matrix-scroll">
+      <table class="matrix">
+        <thead><tr><th class="sector">ISIC Rev. 4 section</th><th class="fn"><span>Identity proofing</span></th><th class="fn"><span>Customer onboarding</span></th><th class="fn"><span>Identity lifecycle management</span></th><th class="fn"><span>Eligibility verification</span></th><th class="fn"><span>Access management</span></th><th class="fn"><span>Certification and attestation</span></th><th class="fn"><span>Regulatory compliance</span></th><th class="fn"><span>Sourcing and procurement</span></th><th class="fn"><span>Supply chain traceability</span></th><th class="fn"><span>Human capital management</span></th><th class="fn"><span>Customer service</span></th><th class="fn"><span>Service delivery</span></th><th class="fn"><span>Records management</span></th></tr></thead>
+        <tbody>
+<tr><th class="sector" scope="row"><span class="code">C</span> Manufacturing</th><td><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#aerospace-supplier-onboarding" title="Automated aerospace supplier onboarding (supporting)">&#9675;</a></td><td><a class="dot primary" href="#aerospace-supplier-onboarding" title="Automated aerospace supplier onboarding (primary)">&#9679;</a></td><td><a class="dot support" href="#aerospace-supplier-onboarding" title="Automated aerospace supplier onboarding (supporting)">&#9675;</a></td><td><a class="dot primary" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (primary)">&#9679;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+<tr><th class="sector" scope="row"><span class="code">G</span> Wholesale and retail trade; repair of motor vehicles and motorcycles</th><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><a class="dot primary" href="#retail-hospitality-age-verification" title="Age verification at the point of sale (primary)">&#9679;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#retail-hospitality-age-verification" title="Age verification at the point of sale (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+<tr><th class="sector" scope="row"><span class="code">I</span> Accommodation and food service activities</th><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><a class="dot primary" href="#retail-hospitality-age-verification" title="Age verification at the point of sale (primary)">&#9679;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#retail-hospitality-age-verification" title="Age verification at the point of sale (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+<tr><th class="sector" scope="row"><span class="code">J</span> Information and communication</th><td><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><a class="dot primary" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (primary)">&#9679;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td></tr>
+<tr><th class="sector" scope="row"><span class="code">K</span> Financial and insurance activities</th><td><a class="dot support" href="#banking-kyc-onboarding" title="Online onboarding and KYC credential issuance (supporting)">&#9675;</a><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td><a class="dot primary" href="#banking-kyc-onboarding" title="Online onboarding and KYC credential issuance (primary)">&#9679;</a></td><td><a class="dot primary" href="#banking-reidentification-password-reset" title="Re-identification after a forgotten password (primary)">&#9679;</a><a class="dot primary" href="#banking-age-of-majority-reidentification" title="Re-identification at the age of majority (primary)">&#9679;</a><a class="dot support" href="#banking-re-kyc" title="Periodic KYC re-evaluation (supporting)">&#9675;</a></td><td><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td><a class="dot support" href="#banking-reidentification-password-reset" title="Re-identification after a forgotten password (supporting)">&#9675;</a></td><td class="empty"></td><td><a class="dot primary" href="#banking-re-kyc" title="Periodic KYC re-evaluation (primary)">&#9679;</a><a class="dot support" href="#banking-kyc-onboarding" title="Online onboarding and KYC credential issuance (supporting)">&#9675;</a><a class="dot support" href="#banking-age-of-majority-reidentification" title="Re-identification at the age of majority (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot primary" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (primary)">&#9679;</a></td><td><a class="dot support" href="#banking-reidentification-password-reset" title="Re-identification after a forgotten password (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td></tr>
+<tr><th class="sector" scope="row"><span class="code">O</span> Public administration and defence; compulsory social security</th><td><a class="dot support" href="#egov-service-access" title="Access to an online government service (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><a class="dot primary" href="#egov-service-access" title="Access to an online government service (primary)">&#9679;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#egov-service-access" title="Access to an online government service (supporting)">&#9675;</a></td><td class="empty"></td></tr>
+<tr><th class="sector" scope="row"><span class="code">P</span> Education</th><td><a class="dot support" href="#education-university-immatriculation" title="University immatriculation (supporting)">&#9675;</a><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td><a class="dot primary" href="#education-university-immatriculation" title="University immatriculation (primary)">&#9679;</a></td><td class="empty"></td><td><a class="dot support" href="#education-university-immatriculation" title="University immatriculation (supporting)">&#9675;</a><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td class="empty"></td><td><a class="dot primary" href="#education-maturitaetszeugnis-issuance" title="Issuance of a Maturitätszeugnis (primary)">&#9679;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><a class="dot primary" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (primary)">&#9679;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#education-maturitaetszeugnis-issuance" title="Issuance of a Maturitätszeugnis (supporting)">&#9675;</a></td></tr>
+<tr><th class="sector" scope="row"><span class="code">Q</span> Human health and social work activities</th><td><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a><a class="dot support" href="#healthcare-patient-identification" title="Patient identification at admission (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td><a class="dot support" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (supporting)">&#9675;</a></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td><a class="dot primary" href="#employment-identity-proofing" title="Employee identity proofing and onboarding (primary)">&#9679;</a></td><td class="empty"></td><td><a class="dot primary" href="#healthcare-patient-identification" title="Patient identification at admission (primary)">&#9679;</a></td><td><a class="dot support" href="#healthcare-patient-identification" title="Patient identification at admission (supporting)">&#9675;</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="legend">
+      <span class="dot primary">&#9679;</span> primary function of a use case &nbsp;&middot;&nbsp;
+      <span class="dot support">&#9675;</span> supporting function. Follow a marker to the use case.
+    </p>
+  </section>
+
+  <section>
+    <h2>Functions that recur across sectors</h2>
+    <ul>
+<li><strong>Identity proofing</strong> &mdash; <span class="code">C</span> <span class="code">J</span> <span class="code">K</span> <span class="code">O</span> <span class="code">P</span> <span class="code">Q</span></li>
+<li><strong>Customer onboarding</strong> &mdash; <span class="code">K</span> <span class="code">P</span></li>
+<li><strong>Eligibility verification</strong> &mdash; <span class="code">C</span> <span class="code">G</span> <span class="code">I</span> <span class="code">J</span> <span class="code">K</span> <span class="code">P</span> <span class="code">Q</span></li>
+<li><strong>Access management</strong> &mdash; <span class="code">K</span> <span class="code">O</span></li>
+<li><strong>Regulatory compliance</strong> &mdash; <span class="code">C</span> <span class="code">G</span> <span class="code">I</span> <span class="code">K</span></li>
+<li><strong>Human capital management</strong> &mdash; <span class="code">C</span> <span class="code">J</span> <span class="code">K</span> <span class="code">P</span> <span class="code">Q</span></li>
+<li><strong>Service delivery</strong> &mdash; <span class="code">O</span> <span class="code">Q</span></li>
+<li><strong>Records management</strong> &mdash; <span class="code">P</span> <span class="code">Q</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Use cases</h2>
+    <div class="flows">
+      <div class="flow" id="banking-kyc-onboarding">
+        <div class="flow-tag">Sector-specific &middot; Modelled</div>
+        <div class="flow-body">
+          <h3>Online onboarding and KYC credential issuance</h3>
+          <p>A prospective customer opens a bank account remotely. The bank identifies them against the e-ID and issues a reusable KYC attestation.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">6419</span> Other monetary intermediation, <span class="code">6512</span> Non-life insurance</p>
+          <p class="meta"><strong>Primary function:</strong> Customer onboarding</p>
+          <p class="meta"><strong>Supporting:</strong> Identity proofing, Regulatory compliance</p>
+        </div>
+<div class="flow-link"><a href="https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/KYC%20Credential">Worked flow &rarr;</a></div>
+      </div>
+      <div class="flow" id="banking-re-kyc">
+        <div class="flow-tag">Sector-specific &middot; Modelled</div>
+        <div class="flow-body">
+          <h3>Periodic KYC re-evaluation</h3>
+          <p>The bank re-runs customer due diligence on an existing relationship at the interval its supervisor requires, reusing the identity already established.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">6419</span> Other monetary intermediation</p>
+          <p class="meta"><strong>Primary function:</strong> Regulatory compliance</p>
+          <p class="meta"><strong>Supporting:</strong> Identity lifecycle management</p>
+        </div>
+<div class="flow-link"><a href="https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/KYC%20Credential">Worked flow &rarr;</a></div>
+      </div>
+      <div class="flow" id="banking-reidentification-password-reset">
+        <div class="flow-tag">Sector-specific &middot; Modelled</div>
+        <div class="flow-body">
+          <h3>Re-identification after a forgotten password</h3>
+          <p>An existing e-banking customer who has lost their credentials is re-identified before access is restored, without a branch visit.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">6419</span> Other monetary intermediation</p>
+          <p class="meta"><strong>Primary function:</strong> Identity lifecycle management</p>
+          <p class="meta"><strong>Supporting:</strong> Customer service, Access management</p>
+        </div>
+<div class="flow-link"><a href="https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/Re-Identification%20After%20Forgotten%20Password">Worked flow &rarr;</a></div>
+      </div>
+      <div class="flow" id="banking-age-of-majority-reidentification">
+        <div class="flow-tag">Sector-specific &middot; Modelled</div>
+        <div class="flow-body">
+          <h3>Re-identification at the age of majority</h3>
+          <p>A customer onboarded as a minor turns 18. The relationship is re-established at full legal capacity, with a qualified electronic signature.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">6419</span> Other monetary intermediation</p>
+          <p class="meta"><strong>Primary function:</strong> Identity lifecycle management</p>
+          <p class="meta"><strong>Supporting:</strong> Regulatory compliance</p>
+        </div>
+<div class="flow-link"><a href="https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/banking/Re-Identification%20at%20Age%20of%20Majority">Worked flow &rarr;</a></div>
+      </div>
+      <div class="flow" id="education-maturitaetszeugnis-issuance">
+        <div class="flow-tag">Sector-specific &middot; Modelled</div>
+        <div class="flow-body">
+          <h3>Issuance of a Maturitätszeugnis</h3>
+          <p>An upper-secondary school issues the school-leaving certificate to the graduate as a digital attestation.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">8521</span> General secondary education</p>
+          <p class="meta"><strong>Primary function:</strong> Certification and attestation</p>
+          <p class="meta"><strong>Supporting:</strong> Records management</p>
+        </div>
+<div class="flow-link"><a href="https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/education">Worked flow &rarr;</a></div>
+      </div>
+      <div class="flow" id="education-university-immatriculation">
+        <div class="flow-tag">Sector-specific &middot; Modelled</div>
+        <div class="flow-body">
+          <h3>University immatriculation</h3>
+          <p>A university admits a student on the strength of the e-ID and the Maturitätszeugnis, without re-collecting or re-checking paper documents.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">8530</span> Higher education</p>
+          <p class="meta"><strong>Primary function:</strong> Customer onboarding</p>
+          <p class="meta"><strong>Supporting:</strong> Eligibility verification, Identity proofing</p>
+        </div>
+<div class="flow-link"><a href="https://github.com/DIDAS-swiss/Trust-Flow-Diagram-Repository/tree/main/education">Worked flow &rarr;</a></div>
+      </div>
+      <div class="flow" id="retail-hospitality-age-verification">
+        <div class="flow-tag">Cross-sector &middot; Exploratory</div>
+        <div class="flow-body">
+          <h3>Age verification at the point of sale</h3>
+          <p>A merchant or a restaurant checks that a customer is over the legal age for a restricted product, learning nothing else about them.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">4711</span> Retail sale in non-specialised stores with food, beverages or tobacco predominating, <span class="code">5610</span> Restaurants and mobile food service activities</p>
+          <p class="meta"><strong>Primary function:</strong> Eligibility verification</p>
+          <p class="meta"><strong>Supporting:</strong> Regulatory compliance</p>
+        </div>
+<div class="flow-link"><span class="status">Not yet modelled</span></div>
+      </div>
+      <div class="flow" id="employment-identity-proofing">
+        <div class="flow-tag">Cross-sector &middot; Exploratory</div>
+        <div class="flow-body">
+          <h3>Employee identity proofing and onboarding</h3>
+          <p>An employer identifies a new hire and checks the qualifications the role requires, before provisioning any account.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">C</span> Manufacturing, <span class="code">J</span> Information and communication, <span class="code">K</span> Financial and insurance activities, <span class="code">P</span> Education, <span class="code">Q</span> Human health and social work activities</p>
+          <p class="meta"><strong>Primary function:</strong> Human capital management</p>
+          <p class="meta"><strong>Supporting:</strong> Identity proofing, Eligibility verification</p>
+        </div>
+<div class="flow-link"><span class="status">Not yet modelled</span></div>
+      </div>
+      <div class="flow" id="aerospace-supplier-onboarding">
+        <div class="flow-tag">Sector-specific &middot; Exploratory</div>
+        <div class="flow-body">
+          <h3>Automated aerospace supplier onboarding</h3>
+          <p>A manufacturer qualifies a new supplier by checking its legal existence, its signatories and its quality accreditations.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">3030</span> Manufacture of air and spacecraft and related machinery</p>
+          <p class="meta"><strong>Primary function:</strong> Sourcing and procurement</p>
+          <p class="meta"><strong>Supporting:</strong> Supply chain traceability, Regulatory compliance</p>
+        </div>
+<div class="flow-link"><span class="status">Not yet modelled</span></div>
+      </div>
+      <div class="flow" id="healthcare-patient-identification">
+        <div class="flow-tag">Sector-specific &middot; Exploratory</div>
+        <div class="flow-body">
+          <h3>Patient identification at admission</h3>
+          <p>A hospital identifies a patient at admission and links them to the right record.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">8610</span> Hospital activities</p>
+          <p class="meta"><strong>Primary function:</strong> Service delivery</p>
+          <p class="meta"><strong>Supporting:</strong> Identity proofing, Records management</p>
+        </div>
+<div class="flow-link"><span class="status">Not yet modelled</span></div>
+      </div>
+      <div class="flow" id="egov-service-access">
+        <div class="flow-tag">Sector-specific &middot; Exploratory</div>
+        <div class="flow-body">
+          <h3>Access to an online government service</h3>
+          <p>A resident authenticates to a public-administration service portal and proves the attributes the service is entitled to see.</p>
+          <p class="meta"><strong>Sectors:</strong> <span class="code">8411</span> General public administration activities</p>
+          <p class="meta"><strong>Primary function:</strong> Access management</p>
+          <p class="meta"><strong>Supporting:</strong> Identity proofing, Service delivery</p>
+        </div>
+<div class="flow-link"><span class="status">Not yet modelled</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The graph itself</h2>
+    <p class="prose">
+      This page is generated from the same data as the machine-readable graph:
+      SKOS concept schemes for the sector and function layers, and use cases as
+      <code>schema:Action</code> nodes linking the two. Load
+      <a href="ifm-graph.ttl">ifm-graph.ttl</a> or
+      <a href="ifm-graph.jsonld">ifm-graph.jsonld</a> into any triple store, or read the
+      <a href="https://github.com/danielsaeuberli/industry-function-mapping">source data and build script</a>.
+    </p>
+  </section>
+
+</div>
+
+<footer class="site">
+  <div class="wrap">
+    <span>industry-function-mapping</span>
+    <span>Generated from <code>data/</code> &mdash; do not edit by hand</span>
+    <span><a href="https://github.com/danielsaeuberli/industry-function-mapping">Source on GitHub</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

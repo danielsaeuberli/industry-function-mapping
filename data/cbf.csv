@@ -1,0 +1,10 @@
+id,level,notation,pref_label_en,broader,code_status,definition
+CBF-CORE,category,,Core business function,,provisional,"The production of the goods or services intended for the market that constitute the enterprise's primary output. Core vs. support is relative to the enterprise, not to the activity."
+CBF-SUP,category,,Support business functions,,provisional,"Ancillary activities carried out to permit or facilitate the core function."
+CBF-SUP-DIST,subcategory,,Distribution and logistics,CBF-SUP,provisional,"Transport, warehousing, order handling."
+CBF-SUP-MKT,subcategory,,"Marketing, sales and after-sales services",CBF-SUP,provisional,"Including help desks and call centres."
+CBF-SUP-ICT,subcategory,,ICT services,CBF-SUP,provisional,"Operating and maintaining information and communication systems."
+CBF-SUP-ADM,subcategory,,Administrative and management functions,CBF-SUP,provisional,"Legal, accounting, finance, human resources, general management, compliance."
+CBF-SUP-ENG,subcategory,,Engineering and related technical services,CBF-SUP,provisional,"Technical testing, design, engineering support."
+CBF-SUP-RND,subcategory,,Research and development,CBF-SUP,provisional,
+CBF-SUP-OTH,subcategory,,Other support business functions,CBF-SUP,provisional,
